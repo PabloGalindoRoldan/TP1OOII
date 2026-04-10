@@ -26,6 +26,8 @@ public class Concurso {
         this.registro = registro;
     }
 
+
+
     /**
      * Constructor sobrecargado para facilitar los tests con un registro vacío por defecto
      */
