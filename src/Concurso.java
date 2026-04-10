@@ -6,8 +6,9 @@ public class Concurso {
     private LocalDate fechaInicio;  // Inicio de inscripción
     private LocalDate fechaFin;     // Fin de inscripción
     private Map<Participante, LocalDate> inscripciones; // Participante y fecha de inscripción
+    private RegistroDeInscripcion registro;
 
-    public Concurso(String nombre, LocalDate fechaInicio, LocalDate fechaFin) {
+    public Concurso(String nombre, LocalDate fechaInicio, LocalDate fechaFin, RegistroDeInscripcion registro) {
         if (nombre == null || nombre.isEmpty()) {
             throw new IllegalArgumentException("El nombre del concurso no puede estar vacío");
         }
@@ -22,6 +23,16 @@ public class Concurso {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.inscripciones = new HashMap<>();
+        this.registro = registro;
+    }
+
+    /**
+     * Constructor sobrecargado para facilitar los tests con un registro vacío por defecto
+     */
+    public Concurso(String nombre, LocalDate fechaInicio, LocalDate fechaFin) {
+        this(nombre, fechaInicio, fechaFin, (nombreParticipante, idConcurso) -> {
+            // Implementación vacía por defecto para tests
+        });
     }
 
     /**
@@ -49,6 +60,7 @@ public class Concurso {
         }
 
         inscripciones.put(participante, fechaActual);
+        this.registro.registrar(participante.getNombre(), this.hashCode()); // Registrar la inscripción
         return true;
     }
 
@@ -102,4 +114,3 @@ public class Concurso {
                 '}';
     }
 }
-

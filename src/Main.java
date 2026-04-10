@@ -4,10 +4,13 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== SISTEMA DE CONCURSOS ===\n");
 
+        //Crear un registro
+        ArchivoRegistroDeInscripcion registro = new ArchivoRegistroDeInscripcion("registro_inscripciones.txt");
+
         // Crear un concurso
         LocalDate inicio = LocalDate.of(2026, 3, 1);
         LocalDate fin = LocalDate.of(2026, 3, 10);
-        Concurso concurso = new Concurso("Concurso de Programación Java", inicio, fin);
+        Concurso concurso = new Concurso("Concurso de Programación Java", inicio, fin, registro);
 
         System.out.println("Concurso creado: " + concurso);
         System.out.println();
