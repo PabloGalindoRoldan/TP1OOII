@@ -2,7 +2,7 @@
 REM Compilar los archivos fuente
 echo [Compilando archivos fuente...]
 if not exist out\production\TPOOIIV2 mkdir out\production\TPOOIIV2
-javac -d out\production\TPOOIIV2 src\*.java
+javac -cp lib\* -d out\production\TPOOIIV2 src\*.java
 
 REM Compilar tests
 echo [Compilando tests...]
@@ -14,5 +14,3 @@ echo [Ejecutando tests...]
 java -cp "out\test\TPOOIIV2;out\production\TPOOIIV2;lib\*" org.junit.platform.console.ConsoleLauncher --scan-classpath out\test\TPOOIIV2
 
 pause
-
-

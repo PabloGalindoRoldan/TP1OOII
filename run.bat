@@ -9,7 +9,7 @@ if not exist "out\test\TPOOIIV2" mkdir out\test\TPOOIIV2
 
 REM Compilar archivos fuente
 echo [Compilando archivos fuente...]
-javac -d out/production/TPOOIIV2 src/*.java
+javac -cp lib/* -d out/production/TPOOIIV2 src/*.java
 if errorlevel 1 (
     echo Error en compilación de fuentes
     exit /b 1
@@ -17,8 +17,7 @@ if errorlevel 1 (
 
 echo [Ejecutando Main...]
 cd out\production\TPOOIIV2
-java Main
+java -cp ../../../lib/*;. Main
 cd ..\..\..
 
 pause
-

@@ -10,18 +10,21 @@ public class Main {
         //Crear un registro BDD
         BDDRegistroDeInscripcion registroBDD = new BDDRegistroDeInscripcion("jdbc:mysql://localhost:3306/concursos", "usuario", "contraseña");
 
+        // Crear EmailService
+        EmailService emailService = new EmailService("smtp.mailtrap.io", 2525, "your_username", "your_password");
+
         // Crear un concurso para archivo
         LocalDate inicio = LocalDate.of(2026, 3, 1);
         LocalDate fin = LocalDate.of(2026, 3, 10);
-        Concurso concurso = new Concurso("Concurso de Programación Java", inicio, fin, registroTxt);
-        
+        Concurso concurso = new Concurso("Concurso de Programación Java", inicio, fin, registroTxt, emailService);
+
         System.out.println("Concurso creado: " + concurso);
         System.out.println();
 
         // Crear participantes
-        Participante juan = new Participante("Juan");
-        Participante maria = new Participante("Maria");
-        Participante pedro = new Participante("Pedro");
+        Participante juan = new Participante("Juan", "juan@example.com");
+        Participante maria = new Participante("Maria", "maria@example.com");
+        Participante pedro = new Participante("Pedro", "pedro@example.com");
 
         // Caso 1: Inscripción el primer día (gana 10 puntos)
         System.out.println("--- Caso 1: Inscripción el primer día ---");
@@ -63,15 +66,15 @@ public class Main {
         //Crear un concurso para BDD
         LocalDate inicio2 = LocalDate.of(2026, 2, 1);
         LocalDate fin2 = LocalDate.of(2026, 2, 10);
-        Concurso concurso2 = new Concurso("Concurso de Programación BDD", inicio2, fin2, registroBDD);
+        Concurso concurso2 = new Concurso("Concurso de Programación BDD", inicio2, fin2, registroBDD, emailService);
         
         System.out.println("Concurso BDD creado: " + concurso2);
         System.out.println();
 
         // Crear nuevos participantes para el concurso BDD
-        Participante ana = new Participante("Ana");
-        Participante carlos = new Participante("Carlos");
-        Participante lucia = new Participante("Lucia");
+        Participante ana = new Participante("Ana", "ana@example.com");
+        Participante carlos = new Participante("Carlos", "carlos@example.com");
+        Participante lucia = new Participante("Lucia", "lucia@example.com");
 
         // Caso 1: Inscripción el primer día en BDD (gana 10 puntos)
         System.out.println("--- Caso 1 BDD: Inscripción el primer día ---");
